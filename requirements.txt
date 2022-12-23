@@ -1,2 +1,2 @@
 gsheetsdb==0.1.13
-google_auth_oauthlib==4.0.0
+google_auth_oauthlib==0.8.0
