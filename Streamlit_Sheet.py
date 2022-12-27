@@ -1,5 +1,4 @@
 import streamlit as st
-import pandas as pd
 
 import os.path
 from google.auth.transport.requests import Request
@@ -44,12 +43,12 @@ def main_streamlit():
             token.write(creds.to_json())
 
     # ======================Streamlit=====================================
-    st.title("Formulários de Diagnóstico")
-    st.subheader("Dados do Empreendedor")
+    st.markdown("<h1 style='text-align: center; color: red;'>Mapeamentos das Startups de Rondônia</h1>" , unsafe_allow_html=True)
 
     # Metodo Contexto
     
     with st.form(key='forms_dados'):
+        st.latex(r'''\c Dados\ do\ Empreendedor''')
         col, col_0 = st.columns(2)
         with col:
             complet_name = st.text_input('Nome Completo:')
@@ -60,6 +59,7 @@ def main_streamlit():
             date_birth = st.text_input("Data de Nascimento:")
         with col_2:
             phone = st.text_input("Informe seu Whatsapp com DDD:")
+        st.latex(r'''\c Dados\ do\ Negócio''')
         business_name = st.text_input("Nome do negócios:")
         cnpj = st.radio("Possui CNPJ?", ("SIM","NÃO"))
         cnpj_value = st.text_input("Caso a responsta anterior seja afirmativa, informe o seu CNPJ:")
@@ -86,23 +86,15 @@ def main_streamlit():
             ])
         with col_4:
             social_midia = st.text_input("Link do site ou rede social: ")
-        col_5,col_6 = st.columns(2)
-        with col_5:
-            estagio = st.selectbox("Informe o seu estágio:",
+        
+        estagio = st.selectbox("Informe o seu estágio:",
             ["Ideação (em desenvolvimento da ideia, estudo do mercado, identificação de oportunidades, nichos e soluções)",
              "Validação (em fase de validação do protótipo - MVP - e dos primeiros clientes)", 
              "Operação (protótipos validados, modelo de negócio definido, conhecimento do mercado)", 
              "Tração (métricas e objetivos definidos, busca de parceiras para crescimento)", 
              "Escala (crescimento médio anual acima de 20% ao ano, em termos de empregados)"])
-        with col_6:
-            desafios = st.multiselect("Informes seus desafios:", ["Marketing","Finanças","Registro de Marca",
-            "Gestao de Times","Precificação", "Captação de recurso","Vendas na internet"])
-            if len(desafios) > 0:
-                desafios_values = '; '.join(desafios)
 
-        col_7, col_8 = st.columns(2)
-        with col_7:
-            business_model = st.selectbox("Qual é o principal modelo de negócio da startup:",
+        business_model = st.selectbox("Qual é o principal modelo de negócio da startup:",
             ["API Application Programming Interface (clientes que assinam ou pagam pelo uso de uma API)",
             "Clube de assinatura recorrente (quando algum serviço é disponibilizado através de um plano de assinatura)",
             "Consumer (app gratuito ou de baixo custo entregando valor ou engajamento aos usuários)",
@@ -114,6 +106,13 @@ def main_streamlit():
             "Venda de dados (serviços de coleta, tratamento, formatação e análise de dados)",
             "Venda direta (venda de produtos online ou presencial gerando receita através de margem sobre produtos vendidos)"
             ])
+        col_7, col_8 = st.columns(2)
+        with col_7:
+            desafios = st.multiselect("Informes seus desafios:", ["Marketing","Finanças","Registro de Marca",
+            "Gestao de Times","Precificação", "Captação de recurso","Vendas na internet"])
+            if len(desafios) > 0:
+                desafios_values = '; '.join(desafios)
+
         with col_8:
             publico = st.selectbox("Qual o principal público-alvo da startup:",
             ["Consumidor final (B2C)", "Empresas (B2B)","Empresas e consumidor final (B2B2C)", "Governo (B2G)",
