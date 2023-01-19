@@ -19,4 +19,4 @@ Para testar o projeto basta executar o código em sua máquina.
 streamlit run Streamlit_Sheet.py
 ```
 ### Tecnologias 
-[![(https://logosmarcas.net/wp-content/uploads/2021/10/Python-Logo-650x366.png)][python.org]]
+[![](https://logosmarcas.net/wp-content/uploads/2021/10/Python-Logo-650x366.png)](python.org)
